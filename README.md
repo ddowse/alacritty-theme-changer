@@ -1,7 +1,7 @@
 # alacritty-theme-changer
 Change alacritty terminal theme on the fly 
 
-# Perl Dependencies.
+# Perl dependencies
 
 ```bash
 pkg install p5-File-Touch-0.12
@@ -27,7 +27,6 @@ And make sure it contains the line:
 ```yaml
 live_config_reload: true
 ```
-
 
 Copy `crittheme` from this repo into `$PATH` e.g `~/bin`
 
