@@ -20,6 +20,11 @@ Edit your [alacritty](https://github.com/alacritty/alacritty) config and add
 import:
 - ~/.config/alacritty/themes/default.yml
 ```
+and make sure it contains the line: 
+
+```yaml
+live_config_reload: true
+```
 
 remove or comment out the `colors` block.
 
