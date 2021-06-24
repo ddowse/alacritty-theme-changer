@@ -1,7 +1,7 @@
 # alacritty-theme-changer
 Change alacritty terminal theme on the fly 
 
-# Perl Dependecies.
+# Perl Dependencies.
 
 ```bash
 pkg install p5-File-Touch-0.12
