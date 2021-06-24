@@ -24,3 +24,8 @@ import:
 remove or comment out the `colors` block.
 
 Copy `crittheme` from this repo into `$PATH` e.g `~/bin`
+
+
+# Showcase
+
+![gif_me_more](gif_me_more.gif)
