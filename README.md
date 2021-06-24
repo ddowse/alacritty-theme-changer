@@ -20,13 +20,14 @@ Edit your [alacritty](https://github.com/alacritty/alacritty) config and add
 import:
 - ~/.config/alacritty/themes/default.yml
 ```
-and make sure it contains the line: 
+remove or comment out the `colors` block.   
+
+And make sure it contains the line: 
 
 ```yaml
 live_config_reload: true
 ```
 
-remove or comment out the `colors` block.
 
 Copy `crittheme` from this repo into `$PATH` e.g `~/bin`
 
