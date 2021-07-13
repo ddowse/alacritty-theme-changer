@@ -1,24 +1,39 @@
 #!/usr/bin/env perl
 
+# (c) 2021 Daniel Dowse 
+
 use strict;
 use warnings;
 
 use Term::Choose;
 use File::Touch;
+use Term::ReadKey;
 
 my $config = "$ENV{'HOME'}/.config/alacritty/alacritty.yml";
 my $d = "$ENV{'HOME'}/.config/alacritty/themes/";
 my $file = "$ENV{'HOME'}/.config/alacritty/themes/default.yml";
+my $select;
+my $theme;
+my $element = "default";
 
 opendir(D, "$d") || die "Can't open directory $d: $!\n";
 my @list = readdir(D);
+shift @list;
+shift @list;
 my $array_ref = \@list;  
 closedir(D);
- 
+
 my $new = Term::Choose->new();
- 
-my $choice = $new->choose( $array_ref, { alignment => 0 } ); 
-my $theme = "$d$choice";
+
+ReadMode 4; 
+while (not defined (my $key = ReadKey(-1))) {
+
+my $choice = $new->choose( $array_ref, { alignment => 0, index => 1, default => $select, prompt => "Current theme: $element", footer => "Select your theme"} ); 
+
+$select = $choice;
+$element = $list[$choice];
+$theme = "$d$element";
+$element = substr($element,0, -4);
 
 open(DATA0,"<$theme") or die "Couldn't open file $theme, $!"; 
 open(DATA1,"+>$file") or die "Couldn't open file $file, $!"; 
@@ -26,11 +41,16 @@ open(DATA1,"+>$file") or die "Couldn't open file $file, $!";
 while(<DATA0>) {
    print DATA1 $_;
 }
+
 close( DATA0 );
 close( DATA1 );
 
 touch($config);
+print "Theme is set to: $theme\n"; 
+}
+
+ReadMode 0; 
 
 print "Theme is set to: $theme\n"; 
 
-#EOF
+# vim: set ts=4 sw=4 tw=80 et :
